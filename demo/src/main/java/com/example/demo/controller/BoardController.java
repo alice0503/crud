@@ -49,9 +49,10 @@ public class BoardController {
     }
 
     @PutMapping("/post/edit/{id}")
-    public String update(BoardDto boardDto) {
+    public String update(BoardDto boardDto, Model model) {
         boardService.savePost(boardDto);
-        return "redirect:/";
+        model.addAttribute("post", boardDto);
+        return "board/detail.html";
     }
 
     @DeleteMapping("/post/{id}")
@@ -59,6 +60,5 @@ public class BoardController {
         boardService.deletePost(id);
         return "redirect:/";
     }
-
 
 }
