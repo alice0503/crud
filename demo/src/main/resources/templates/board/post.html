@@ -8,7 +8,7 @@
 <body>
 <header th:insert="common/header.html"></header>
 <div class="container">
-    <form action="/post" method="post">
+    <form action="/post" method="post" id ="f">
         <div class="form-group row">
             <label for="inputTitle" class="col-sm-2 col-form-label"><strong>제목</strong></label>
             <div class="col-sm-10">
@@ -30,12 +30,49 @@
         <div class="row">
             <div class="col-auto mr-auto"></div>
             <div class="col-auto">
-                <input class="btn btn-primary" type="submit" role="button" value="글쓰기">
+                <input class="btn btn-primary" type="button" id ="btnSave" role="button" value="글쓰기">
             </div>
         </div>
     </form>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="/js/plugins/pace/pace.min.js"></script>
+<script>
+        $(document).ready(function () {
+
+        $("#btnSave").on("click", function() {
+        if($("#inputTitle").val().split(" ").join("") == "") {
+        swal({
+        title: "알림",
+        text: "제목을 입력하세요.",
+        icon: "info"
+        });
+        return;
+        }
+        else if($("#inputAuthor").val().split(" ").join("") == "") {
+        swal({
+        title: "알림",
+        text: "작성자를 입력하세요.",
+        icon: "info"
+        });
+        return;
+        }
+        else if($("#inputContent").val().split(" ").join("") == "") {
+        swal({
+        title: "알림",
+        text: "내용을 입력하세요.",
+        icon: "info"
+        });
+        return;
+        }
+        else {
+        $("#f").submit();
+        }
+        });
+
+            });
+</script>
 </body>
 </html>
