@@ -38,6 +38,7 @@ public class BoardController {
     public String detail(@PathVariable("id") Long id, Model model) {
         BoardDto boardDto = boardService.getPost(id);
         model.addAttribute("post", boardDto);
+
         return "board/detail.html";
     }
 
